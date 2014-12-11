@@ -1,6 +1,8 @@
 FROM yourgrigor/ruby:2.1.2
 
-RUN apt-get install -qq -y software-properties-common
+RUN apt-get update
+
+RUN apt-get install -qq -y python-software-properties
 
 RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
