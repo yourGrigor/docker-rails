@@ -1,6 +1,16 @@
 FROM yourgrigor/ruby:2.1.3
 
+RUN apt-get install -qq -y nodejs
+
+RUN apt-get install -qq -y software-properties-common
+
+RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
+RUN apt-get install -qq -y nginx
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN chown -R www-data:www-data /var/lib/nginx
+
+ADD nginx-sites.conf /etc/nginx/sites-enabled/default
 
 RUN gem install foreman
 
@@ -13,7 +23,7 @@ RUN apt-get install -qq -y libmysqlclient-dev
 
 WORKDIR /app
 ONBUILD ADD Gemfile /app/Gemfile
-            && Gemfile.lock /app/Gemfile.lock
+ONBUILD ADD Gemfile.lock /app/Gemfile.lock
 ONBUILD RUN bundle install --without development test
 ONBUILD ADD . /app
 
