@@ -1,4 +1,4 @@
-FROM yourgrigor/ruby2.1.2
+FROM yourgrigor/ruby:2.1.2
 
 RUN apt-get install -qq -y software-properties-common
 
