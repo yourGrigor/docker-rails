@@ -2,15 +2,6 @@ FROM yourgrigor/ruby:2.1.3
 
 RUN apt-get update
 
-RUN apt-get install -qq -y python-software-properties
-
-RUN apt-get update
-RUN apt-get install -qq -y nginx
-RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-RUN chown -R www-data:www-data /var/lib/nginx
-
-ADD nginx-sites.conf /etc/nginx/sites-enabled/default
-
 RUN gem install foreman
 
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
