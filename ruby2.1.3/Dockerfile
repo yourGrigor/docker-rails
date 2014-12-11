@@ -4,7 +4,6 @@ RUN apt-get update
 
 RUN apt-get install -qq -y python-software-properties
 
-RUN \add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 RUN apt-get install -qq -y nginx
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
